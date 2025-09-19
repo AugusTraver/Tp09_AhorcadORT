@@ -3,7 +3,8 @@ let IntentosLetras = [];
 let Adivinanza;
 let Gano = null;
 function AdivinarPalabra(palabra){
-    let LetraIngresada = getElementById("palabraElegida").value;
+    console.log(palabra);
+    let LetraIngresada = document.getElementById("palabraElegida").value;
     for (let X = 0; X < LetraIngresada.length; X++)
     {
         Adivinanza[X] = '-';
