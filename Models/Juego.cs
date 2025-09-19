@@ -5,7 +5,7 @@ public static class Juego
     public static List<Palabra> ListaPalabras { get; private set; }
     public static List<Usuario> ListaJugadores { get; private set; }
     public static Usuario JugadorAcutal { get; private set; }
-    private static void LlenarListaPalabras()
+    public static void LlenarListaPalabras()
     {
         ListaPalabras.Add(new Palabra("Perro", 1));
         ListaPalabras.Add(new Palabra("Gato", 1));
@@ -20,9 +20,9 @@ public static class Juego
 
         // Nivel de dificultad 2 (palabras intermedias)
         ListaPalabras.Add(new Palabra("Montaña", 2));
-        ListaPalabras.Add(new Palabra("Avión", 2));
+        ListaPalabras.Add(new Palabra("Avion", 2));
         ListaPalabras.Add(new Palabra("Poyin", 2));
-        ListaPalabras.Add(new Palabra("Película", 2));
+        ListaPalabras.Add(new Palabra("Pelicula", 2));
         ListaPalabras.Add(new Palabra("Cielo", 2));
         ListaPalabras.Add(new Palabra("Peron", 2));
         ListaPalabras.Add(new Palabra("Hieron", 2));
@@ -48,19 +48,19 @@ public static class Juego
         ListaPalabras.Add(new Palabra("Electroencefalografista", 4));
         ListaPalabras.Add(new Palabra("Hipopotomonstrosesquipedaliofobia", 4));
         ListaPalabras.Add(new Palabra("Esternocleidomastoideo", 4));
-        ListaPalabras.Add(new Palabra("Otorrinolaringología", 4));
+        ListaPalabras.Add(new Palabra("Otorrinolaringologia", 4));
         ListaPalabras.Add(new Palabra("Fluorurosilicato", 4));
         ListaPalabras.Add(new Palabra("hipopotomonstrosesquipedaliofobia ", 4));
         ListaPalabras.Add(new Palabra("MiniPekka", 4));
         ListaPalabras.Add(new Palabra("Desoxirribonucleico", 4));
     }
-    private static void InicializarJuego(string usuario, int dificultad)
+    public static void InicializarJuego(string usuario, int dificultad)
     {
         Usuario usu = new Usuario(usuario, 0);
         JugadorAcutal = usu;
     }
 
-    private static string CargarPalabra(int dificultad)
+    public static string CargarPalabra(int dificultad)
     {
         List<Palabra> palabrasDif = null;
         Random rnd = new Random();
@@ -78,7 +78,7 @@ public static class Juego
         return palabrasDif[indice].texto;
     }
 
-    private static void FinJuego(int intentos)
+    public static void FinJuego(int intentos)
     {
         string nombre = JugadorAcutal.nombre;
         Usuario jugadorA = new Usuario(nombre, intentos);
@@ -87,6 +87,10 @@ public static class Juego
     public static List<Usuario> DevolverListaUsuarios()
     {
         return ListaJugadores.OrderBy(u => u.cantidadIntentos).ToList();
+    }
+    public static void AgregarJugador(Usuario usuario)
+    {
+        ListaJugadores.Add(usuario);
     }
 }
 

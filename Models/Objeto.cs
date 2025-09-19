@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+namespace PrimerProyecyo.Models;
 
 public static class Objeto
 

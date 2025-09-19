@@ -3,6 +3,30 @@
 }
 
 <div>
-    <h1>Index</h1>
-    <p>Bienvenidos al sitio web de NombreProyecto</p>
+
+    <p> Ingrese su nombre y la dificultad del juego </p>
+    <form action ='@Url.Action("Comenzar","Home") ' method = "post">
+        <input type ="text" name = "nombre " placeHolder = "Ingrese su nombre">
+        <select id="dificultad" name="dificultad">
+            <option value="1">Facil</option>
+            <option value="2">Intermedio</option>
+            <option value="3">Dificil</option>
+            <option value="4">Imposible</option>
+          </select>
+          <input type = "submit" value ="Enviar">
+          <input type = "reset" value ="reset">
+    </form>
+@if (ViewBag.ListaJugadores != null)
+{
+    for (int i = 0; i < ViewBag.ListaJugadores.Count; i++)
+    {
+        @ViewBag.ListaJugadores[i].nombre;
+        @ViewBag.ListaJugadores[i].cantidadIntentos;
+    }
+}
+else
+{
+    <p>No hay jugadores para mostrar.</p>
+}
+ 
 </div>

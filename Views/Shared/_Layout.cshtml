@@ -10,16 +10,17 @@
 
 <body>
     <header>
-        NombreProyecto
+    <h1> El ahorcado de Morgan</h1>
+                <img src="~/Imagenes/MORGAN.jpg" alt="Logo del Juego" />
+   <a href="@Url.Action("index", "Home")">
+            <button>Jugar</button>
+        </a>
     </header>
 
     <main role="main">
         @RenderBody()
     </main>
 
-    <footer>
-        &copy; @DateTime.Now.Year - NombreProyecto
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
