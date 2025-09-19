@@ -2,13 +2,12 @@
     ViewData["Title"] = "Juego";
 }
 
-<div>
-
+<div id = "juego">
+   <p> Ingrese una letra o palabra </p>
 <input type = "text" name = "palabra" id = "palabraElegida">
-<button onclik = "Adivinar">
-
-<div>
-
-<footer>
-    <p>La Banda del Morgan</p>
-</footer>
+<button onclick = "AdivinarPalabra('@ViewBag.palabra')"> Hace click para mandar la respuesta </button>
+<p id = "contandor"></p>
+</div>
+<p id = "res"> 0</p>
+<p id  = "alert"> 1 </p>
+    
