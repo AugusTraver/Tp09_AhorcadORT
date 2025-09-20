@@ -2,12 +2,18 @@
     ViewData["Title"] = "Juego";
 }
 
-<div id = "juego">
-   <p> Ingrese una letra o palabra </p>
-<input type = "text" name = "palabra" id = "palabraElegida">
-<button onclick = "AdivinarPalabra('@ViewBag.palabra')"> Hace click para mandar la respuesta </button>
-<p id = "contandor"></p>
+<div id="juego">
+    <p>Ingrese una letra o palabra</p>
+    <input type="text" name="palabra" id="palabraElegida" autocomplete="off">
+    <button onclick="AdivinarPalabra('@ViewBag.palabra')">Mandar respuesta</button>
+    <p id="contandor">Intentos: 0</p>
+    <p id="res"> </p>
 </div>
-<p id = "res"> 0</p>
-<p id  = "alert"> 1 </p>
-    
+<p id="alert"></p>
+
+<script>
+    // Llama a IniciarJuego con la palabra a adivinar al cargar la página
+    window.onload = function() {
+        IniciarJuego('@ViewBag.palabra');
+    }
+</script>

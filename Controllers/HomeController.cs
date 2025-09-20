@@ -32,6 +32,7 @@ public class HomeController : Controller
         return View("Juego");
     }
     [HttpPost]
+    [HttpPost]
     public IActionResult FinJuego(int intentos)
     {
         string juego = HttpContext.Session.GetString("usua");

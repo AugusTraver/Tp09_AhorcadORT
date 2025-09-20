@@ -7,8 +7,11 @@ public static class Juego
     public static Usuario JugadorAcutal { get; private set; }
     public static void LlenarListaPalabras()
     {
-        ListaPalabras = new List<Palabra>();
-        ListaJugadores = new List<Usuario>();
+        if (ListaPalabras == null)
+            ListaPalabras = new List<Palabra>();
+        if (ListaJugadores == null)
+            ListaJugadores = new List<Usuario>();
+
         ListaPalabras.Add(new Palabra("Perro", 1));
         ListaPalabras.Add(new Palabra("Gato", 1));
         ListaPalabras.Add(new Palabra("Tolo", 1));
@@ -62,23 +65,18 @@ public static class Juego
         JugadorAcutal = usu;
     }
 
-        public static string CargarPalabra(int dificultad)
+    public static string CargarPalabra(int dificultad)
+    {
+        List<Palabra> palabrasDif = new List<Palabra>();
+        foreach (var palabra in ListaPalabras)
         {
-            List<Palabra> palabrasDif = new List<Palabra>();          
-            int i = 0;
-            do
-            {
-                if (ListaPalabras[i].dificultad == dificultad)
-                {
-                    palabrasDif.Add(ListaPalabras[i]);
-                }
-                i++;
-            } while (i >= ListaPalabras.Count);
-              Random rnd = new Random();
-            int indice = rnd.Next(0, palabrasDif.Count);
-            return palabrasDif[indice].texto;
+            if (palabra.dificultad == dificultad)
+                palabrasDif.Add(palabra);
         }
-
+        Random rnd = new Random();
+        int indice = rnd.Next(0, palabrasDif.Count);
+        return palabrasDif[indice].texto;
+    }
     public static void FinJuego(int intentos)
     {
         string nombre = JugadorAcutal.nombre;

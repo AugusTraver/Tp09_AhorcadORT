@@ -1,57 +1,77 @@
 ﻿let ContadorIntentos = 0;
 let IntentosLetras = [];
-let Adivinanza;
+let Adivinanza = [];
 let Gano = null;
-function AdivinarPalabra(palabra){
-    console.log(palabra);
-    let LetraIngresada = document.getElementById("palabraElegida").value;
-    for (let X = 0; X < LetraIngresada.length; X++)
-    {
-        Adivinanza[X] = '-';
+let LetraIngresada = "";
+
+function IniciarJuego(palabra) {
+    ContadorIntentos = 0;
+    IntentosLetras = [];
+    Adivinanza = [];
+    Gano = null;
+    for (let i = 0; i < palabra.length; i++) {
+        Adivinanza.push('-');
     }
-    if (LetraIngresada.length === 1)
-    {
-        ContadorIntentos = ContadorIntentos + 1;
-        if (!IntentosLetras.includes(LetraIngresada))
-        {
-            IntentosLetras.push(LetraIngresada);
-            for (let i = 0; i < IntentosLetras.count; i++)
-            {
-                for (let j = 0; j < Adivinanza.length; j++)
-                {
-                    if (IntentosLetras[i] == PalabraElegida[j])
-                    {
-                        Adivinanza[j] = IntentosLetras[i];
-                        if(Adivinanza = palabra){
-                            ComprarPalabra(palabra);
-                        }
-                    }
-                }
+    document.getElementById("res").innerText = Adivinanza.join('');
+    document.getElementById("contandor").innerText = ContadorIntentos;
+    document.getElementById("alert").innerText = "";
+    document.getElementById("juego").style.display = "block";
+    document.getElementById("palabraElegida").value = "";
+}
+
+function AdivinarPalabra(palabra) {
+    if (Gano !== null) return;
+
+    LetraIngresada = document.getElementById("palabraElegida").value.trim().toLowerCase();
+    document.getElementById("palabraElegida").value = "";
+
+    if (LetraIngresada.length === 0) return;
+
+    if (LetraIngresada.length > 1) {
+        ContadorIntentos++;
+        if (LetraIngresada === palabra.toLowerCase()) {
+            Adivinanza = palabra.split('');
+            Gano = true;
+            MostrarResultado(palabra, true);
+            return;
+        } else {
+            MostrarResultado(palabra, false);
+            return;
+        }
+    }
+
+    if (LetraIngresada.length === 1) {
+        if (IntentosLetras.includes(LetraIngresada)) {
+            return;
+        }
+        IntentosLetras.push(LetraIngresada);
+        ContadorIntentos++;
+
+        let acerto = false;
+        for (let j = 0; j < palabra.length; j++) {
+            if (palabra[j].toLowerCase() === LetraIngresada) {
+                Adivinanza[j] = palabra[j]; 
+                acerto = true;
             }
         }
-        document.getElementById("res") = Adivinanza;
-        document.getElementById("contandor") = ContadorIntentos;
 
-    }
-    else
-    {
-        ComprarPalabra(palabra);
-    }
-    }
+        document.getElementById("res").innerText = Adivinanza.join('');
+        document.getElementById("contandor").innerText = ContadorIntentos;
 
-    function ComprarPalabra(palabra)
-    {
-         if (palabra == LetraIngresada)
-         {
-            document.getElementById("res") = palabra;
-            document.getElementById("alert") = "GANASTE AMIGO, BIEN AHI, EN " + ContadorIntentos + " INTENTOS" ;
-            document.getElementById("juego").style.display ="none";
-         } 
-         else 
-         {
-            document.getElementById("res") = palabra;
-            document.getElementById("alert") = "PERDISTE BURRO EN " + ContadorIntentos + " INTENTOS";
-            document.getElementById("juego").style.display ="none";
-
-         }
+        if (Adivinanza.join('').toLowerCase() === palabra.toLowerCase()) {
+            Gano = true;
+            MostrarResultado(palabra, true);
+            return;
+        }
     }
+}
+
+function MostrarResultado(palabra, gano) {
+    document.getElementById("res").innerText = palabra;
+    if (gano) {
+        document.getElementById("alert").innerText = "GANASTE AMIGO, BIEN AHI, EN " + ContadorIntentos + " INTENTOS";
+    } else {
+        document.getElementById("alert").innerText = "PERDISTE BURRO EN " + ContadorIntentos + " INTENTOS";
+    }
+    document.getElementById("juego").style.display = "none";
+}
