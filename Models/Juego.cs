@@ -77,9 +77,8 @@ public static class Juego
         int indice = rnd.Next(0, palabrasDif.Count);
         return palabrasDif[indice].texto;
     }
-    public static void FinJuego(int intentos)
+    public static void FinJuego(int intentos, string nombre )
     {
-        string nombre = JugadorAcutal.nombre;
         Usuario jugadorA = new Usuario(nombre, intentos);
         ListaJugadores.Add(jugadorA);
     }
@@ -87,9 +86,6 @@ public static class Juego
     {
         return ListaJugadores.OrderBy(u => u.cantidadIntentos).ToList();
     }
-    public static void AgregarJugador(Usuario usuario)
-    {
-        ListaJugadores.Add(usuario);
-    }
+   
 }
 

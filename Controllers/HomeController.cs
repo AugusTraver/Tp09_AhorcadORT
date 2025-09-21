@@ -15,7 +15,9 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        ViewBag.ListaJugadores = Juego.ListaJugadores;
+        if (Juego.ListaJugadores == null)
+            Juego.LlenarListaPalabras();
+        ViewBag.ListaJugadores = Juego.DevolverListaUsuarios();
         return View();
     }
 
@@ -31,13 +33,12 @@ public class HomeController : Controller
         ViewBag.palabra = Juego.CargarPalabra(dificultad);
         return View("Juego");
     }
-    [HttpPost]
-    [HttpPost]
     public IActionResult FinJuego(int intentos)
     {
-        string juego = HttpContext.Session.GetString("usua");
-        Usuario usu = Objeto.StringToObject<Usuario>(juego);
-        Juego.AgregarJugador(usu);
+       string usu =  HttpContext.Session.GetString("usua");
+        Usuario usuario = Objeto.StringToObject<Usuario>(usu);
+        usu = usuario.nombre;
+        Juego.FinJuego(intentos, usu);
         return RedirectToAction("Index");
     }
 }

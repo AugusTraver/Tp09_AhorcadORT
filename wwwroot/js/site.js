@@ -66,12 +66,20 @@ function AdivinarPalabra(palabra) {
     }
 }
 
-function MostrarResultado(palabra, gano) {
-    document.getElementById("res").innerText = palabra;
-    if (gano) {
-        document.getElementById("alert").innerText = "GANASTE AMIGO, BIEN AHI, EN " + ContadorIntentos + " INTENTOS";
-    } else {
-        document.getElementById("alert").innerText = "PERDISTE BURRO EN " + ContadorIntentos + " INTENTOS";
+   function MostrarResultado(palabra, gano) {
+        document.getElementById("res").innerText = palabra;
+        if (gano) {
+            document.getElementById("alert").innerText = "GANASTE AMIGO, BIEN AHI, EN " + ContadorIntentos + " INTENTOS";
+            document.getElementById("ganador").style.display = "block"; // Mostrar botón solo si ganó
+        } else {
+            document.getElementById("alert").innerText = "PERDISTE BURRO EN " + ContadorIntentos + " INTENTOS";
+        }
+        document.getElementById("juego").style.display = "none";
     }
-    document.getElementById("juego").style.display = "none";
+function SacarIntentos() {
+    return ContadorIntentos;
+}
+function FinJuego() {
+    var intentos = SacarIntentos();
+    window.location.href = '/Home/FinJuego?intentos=' + intentos;
 }
