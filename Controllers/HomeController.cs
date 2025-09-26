@@ -24,10 +24,8 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult Comenzar(string username, int dificultad)
     {
-        Usuario usu = new Usuario(username, dificultad);
-        string obj = Objeto.ObjectToString(usu);
-        HttpContext.Session.SetString("usua", obj);
-
+        Console.WriteLine("username");
+        HttpContext.Session.SetString("usua", username);
         Juego.LlenarListaPalabras();
         ViewBag.username = username;
         ViewBag.palabra = Juego.CargarPalabra(dificultad);
@@ -35,9 +33,8 @@ public class HomeController : Controller
     }
     public IActionResult FinJuego(int intentos)
     {
-       string usu =  HttpContext.Session.GetString("usua");
-        Usuario usuario = Objeto.StringToObject<Usuario>(usu);
-        usu = usuario.nombre;
+        string usu = HttpContext.Session.GetString("usua");
+        Usuario usuario = new Usuario(usu,intentos);
         Juego.FinJuego(intentos, usu);
         return RedirectToAction("Index");
     }

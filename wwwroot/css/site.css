@@ -1,23 +1,259 @@
-html {
-  font-size: 14px;
-  min-height: 100%;
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #f1f4fd 0%, #c0e6f7 100%);
+  color: #23395d;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
+.logo-header-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 36px 0 16px 0;
+}
+.logo-header-img {
+  max-width: 550px;
+  height: auto;
+  display: block;
+  transition: max-width 0.2s;
+}
+header h1 {
+  text-align: center;
+  font-size: 2.2em;
+  margin: 0 0 16px 0;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+header button {
+  margin-bottom: 10px;
+}
+
+.logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 10px 0;
+}
+.logo-img {
+  max-width: 300px;
+  height: auto;
+}
+
+/* Bloques principales centrados */
+#juego, #ganador, form, #alert {
+  max-width: 400px;
+  margin: 40px auto 20px auto;
+  padding: 32px 28px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 28px rgba(35,57,93,0.13), 0 1.5px 8px rgba(35,57,93,0.04);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#juego {
+  animation: fadeInDown 1s;
+}
+#ganador {
+  background: linear-gradient(116deg, #d1f1c8 60%, #faf8c1 100%);
+  box-shadow: 0 6px 28px rgba(49,128,62,0.11), 0 1.5px 8px rgba(49,128,62,0.08);
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-60px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.info-block {
+  margin: 20px 0 10px 0;
+  padding: 16px 12px;
+  background: #eaf4fb;
+  border-radius: 8px;
+  color: #2d4560;
+  font-size: 1.12em;
+  text-align: center;
+  width: 100%;
+}
+input[type="text"], select {
+  width: 80%;
+  padding: 10px 12px;
+  margin: 12px 0;
+  border: 1.5px solid #b1c6e0;
+  border-radius: 8px;
+  font-size: 1.1em;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  background: #f7fbff;
+}
+input[type="text"]:focus, select:focus {
+  border-color: #5eb3f5;
+  outline: none;
+}
+button, input[type="submit"], input[type="reset"] {
+  background: linear-gradient(90deg, #5eb3f5 60%, #7de2fc 100%);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 26px;
+  margin: 8px 5px;
+  font-size: 1.08em;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(94,179,245,0.11);
+  transition: background 0.2s, box-shadow 0.2s;
+  width: 90%;
+  max-width: 250px;
+}
+button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+  background: linear-gradient(90deg, #39a1f4 60%, #51e2f5 100%);
+  box-shadow: 0 4px 20px rgba(94,179,245,0.19);
+}
+input[type="reset"] {
+  background: linear-gradient(90deg, #ffb284 60%, #ffe9b6 100%);
+  color: #714400;
+}
+input[type="reset"]:hover {
+  background: linear-gradient(90deg, #ff985a 60%, #ffe18e 100%);
+  color: #5e3100;
+}
+select {
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position-x: 96%;
+  background-position-y: 50%;
+}
+
+/* ALERT GRANDE, SIEMPRE VISIBLE, CON ICONO */
+#alert {
+  color: #e04040;
+  background: #fbeaea;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin: 22px auto 24px auto;
+  width: 100%;
+  min-width: 220px;
+  min-height: 40px;
+  font-size: 1.25em;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(224,64,64,0.09);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+#alert.visible {
+  opacity: 1;
+  pointer-events: auto;
+  animation: fadeIn 0.4s;
+}
+#alert .icon {
+  font-size: 1.4em;
+  display: inline-block;
+  vertical-align: middle;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+#contandor {
+  font-size: 1.23em;
+  color: #45b36b;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+#res {
+  color: #2c3e50;
+  font-size: 1.09em;
+  min-height: 22px;
+  margin-top: 16px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 12px 0;
+  width: 100%;
+}
+li {
+  background: #eaf4fb;
+  border-radius: 7px;
+  margin: 7px 0;
+  padding: 10px 12px;
+  font-size: 1.04em;
+  color: #1b2f4b;
+  box-shadow: 0 1px 6px rgba(94,179,245,0.07);
+}
+@media (max-width: 600px) {
+  #juego, #ganador, form, #alert {
+      max-width: 96vw;
+      padding: 16px 8px;
+  }
+  input[type="text"], select {
+      width: 98%;
+      font-size: 1em;
+  }
+  button, input[type="submit"], input[type="reset"] {
+      width: 90%;
+      font-size: 1em;
+      margin: 8px 0;
+  }
+  .logo-header-img {
+      max-width: 180px;
   }
 }
-
-body {
-  margin: 10px;
-  padding: 10px;
+#ganador button {
+  background: linear-gradient(90deg, #45b36b 70%, #acebb7 100%);
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.12em;
 }
-
-
-footer {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
+#ganador button:hover {
+  background: linear-gradient(90deg, #2e8e50 70%, #7de2aa 100%);
 }
+::-webkit-input-placeholder { color: #b1c6e0; opacity: 1;}
+::-moz-placeholder { color: #b1c6e0; opacity: 1;}
+:-ms-input-placeholder { color: #b1c6e0; opacity: 1;}
+::placeholder { color: #b1c6e0; opacity: 1;}
+
+#alert {
+  color: #050000;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin: 22px auto 24px auto;
+  width: 100%;
+  min-width: 220px;
+  min-height: 40px;
+  font-size: 1.25em;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(224,64,64,0.09);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+#alert:empty {
+  opacity: 0;
+  visibility: hidden;
+  min-height: 40px;
+  padding: 18px 22px;
+}
+#alert .icon {
+  font-size: 1.4em;
+  display: inline-block;
+  vertical-align: middle;
+} 

@@ -1,19 +1,24 @@
 @{
     ViewData["Title"] = "Juego";
 }
+<link rel="stylesheet" href="~/css/style.css">
+
+<div class="logo-container">
+    <img src="/imagenes/MORGAN.jpg" alt="Logo" class="logo-img">
+</div>
 
 <div id="juego">
     <p>Ingrese una letra o palabra</p>
-
     <input type="text" name="palabra" id="palabraElegida" autocomplete="off">
     <button onclick="AdivinarPalabra('@ViewBag.palabra')">Mandar respuesta</button>
     <p id="contandor">Intentos: 0</p>
-    <p id="res"> </p>
-
+    <p id="res"></p>
 </div>
+
 <div id="ganador" style="display:none;">
     <button onclick="FinJuego()">Agregarme al ranking</button>
 </div>
+
 <p id="alert"></p>
 
 <script>

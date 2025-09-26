@@ -1,33 +1,40 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
+<link rel="stylesheet" href="~/css/style.css">
 
-<div>
-    @if (ViewBag.ListaJugadores == null || ViewBag.ListaJugadores.Count == 0)
-    {
-        <p>No hay jugadores</p>
-    }
-    else
-    {
-        <ul>
-        @foreach (var jugador in ViewBag.ListaJugadores)
-        {
-            <li>
-                Jugador: @jugador.nombre - Intentos: @jugador.cantidadIntentos
-            </li>
-        }
-        </ul>
-    }
-    <p>Ingrese su nombre y la dificultad del juego</p>
-    <form action='@Url.Action("Comenzar","Home")' method="post">
-        <input type="text" name="nombre" placeholder="Ingrese su nombre">
-        <select id="dificultad" name="dificultad">
-            <option value="1">Facil</option>
-            <option value="2">Intermedio</option>
-            <option value="3">Dificil</option>
-            <option value="4">Imposible</option>
-        </select>
-        <input type="submit" value="Enviar">
-        <input type="reset" value="reset">
-    </form>
+<div class="logo-container">
+    <img src="/imagenes/MORGAN.jpg" alt="Logo" class="logo-img">
 </div>
+
+@if (ViewBag.ListaJugadores == null || ViewBag.ListaJugadores.Count == 0)
+{
+    <div class="info-block">No hay jugadores</div>
+}
+else
+{
+    <ul>
+    @foreach (var jugador in ViewBag.ListaJugadores)
+    {
+        <li>
+            Jugador: @jugador.nombre - Intentos: @jugador.cantidadIntentos
+        </li>
+    }
+    </ul>
+}
+
+<div class="info-block">Ingrese su nombre y la dificultad del juego</div>
+
+<form action='@Url.Action("Comenzar","Home")' method="post">
+    <input type="text" name="username" placeholder="Ingrese su nombre" autocomplete="off" required>
+    <select id="dificultad" name="dificultad">
+        <option value="1">Fácil</option>
+        <option value="2">Intermedio</option>
+        <option value="3">Difícil</option>
+        <option value="4">Imposible</option>
+    </select>
+    <input type="submit" value="Jugar">
+    <input type="reset" value="Limpiar">
+</form>
+
+<p id="alert"></p>
